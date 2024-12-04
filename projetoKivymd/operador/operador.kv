@@ -1,0 +1,184 @@
+<FlatButton@ButtonBehavior+Label>:
+    font_size: 14
+
+
+<OperadorWindow>:
+    id: main_win
+    orientation: 'vertical'
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    
+    BoxLayout:
+        id: header
+        size_hint_y: None
+        height: 40
+        canvas.before:
+            Color:
+                rgba: (.2,.2,.7,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: 'Controle de Estoque'
+            size_hint_x: .9
+            bold: True
+            color: (1,1,1,1)
+        FlatButton:
+            id: loggedin_user
+            text: 'perfil'
+            color: (1,1,1,1)
+    
+    BoxLayout:
+        id: current
+        size_hint_y: None
+        height: 50
+        canvas.before:
+            Color:
+                rgba: (1,1,1,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Button:
+            text: 'Item:'
+            background_normal: ''
+            background_color: (.1, .24, .7, 1)
+            size_hint_x: .4
+        Button:
+            id:cur_product
+            text: 'Produto padrão'
+            background_normal: ''
+            background_color: (.1, .30, .8, 1)
+        Button:
+            id: cur_price
+            text: '0.00'
+            background_normal: ''
+            background_color: (.1, .40, .9, 1)
+            size_hint_x: .2
+    BoxLayout:
+        padding: 10
+        BoxLayout:
+            id:product_details
+            orientation: 'vertical'
+            size_hint_x: .8
+            spacing: 10
+
+            BoxLayout:
+                id: product_labels
+                size_hint_y: None
+                height: 40
+                canvas.before:
+                    Color:
+                        rgba: (.2, .2, .7, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                FlatButton:
+                    text: 'Qty'
+                    size_hint_x: .1
+                FlatButton:
+                    text: 'Código Do Produto'
+                    size_hint_x: .3
+                FlatButton:
+                    text: 'Desconto'
+                    size_hint_x: .2
+                FlatButton:
+                    text: '% Desconto'
+                    size_hint_x: .1
+                FlatButton:
+                    text: 'VAT'
+                    size_hint_x: .1
+                FlatButton:
+                    text: 'Preço'
+                    size_hint_x: .1
+                FlatButton:
+                    text: 'Total Dos Produtos'
+                    size_hint_x: .2
+            
+            BoxLayout:
+                id: product_inputs
+                size_hint_y: None
+                height: 30
+                spacing: 10
+                TextInput:
+                    id: qty_inp
+                    size_hint_x: .1
+                TextInput:
+                    id: code_inp
+                    size_hint_x: .3
+                    multiline: False
+                    on_text_validate: root.update_purschases()
+                TextInput:
+                    id: disc_inp
+                    size_hint_x: .2
+                TextInput:
+                    id: disc_perc_inp
+                    size_hint_x: .1
+                TextInput:
+                    id: vat_inp
+                    size_hint_x: .1
+                TextInput:
+                    id: price_inp
+                    size_hint_x: .1
+                TextInput:
+                    id: total_inp
+                    size_hint_x: .2
+            
+            BoxLayout:
+                id: add_to_cart
+                orientation: 'vertical'
+                BoxLayout:
+                    size_hint_y: None
+                    height: 30
+                    canvas.before:
+                        Color:
+                            rgba: (.2, .2, .7, 1)
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text: 'Código'
+                        size_hint_x: .2
+                    Label:
+                        text: 'Nome do Produto'
+                        size_hint_x: .3
+                    Label:
+                        text: 'Quantidade'
+                        size_hint_x: .1
+                    Label:
+                        text: 'Desconto'
+                        size_hint_x: .1
+                    Label:
+                        text: 'Preço'
+                        size_hint_x: .1
+                    Label:
+                        text: 'Total dos Produtos' 
+                        size_hint_x: .2 
+                GridLayout:
+                    id: products   
+                    cols: 1
+
+        BoxLayout:
+            id: preview
+            orientation: 'vertical'
+            size_hint_x: .2
+
+            TextInput:
+                id: receipt_preview
+                readonly: True
+                text: 'Coletor\nRua Exemplo 123\nCidade, Estado\n\nTel: (00)98765-4321\nRecibo N: \nData: \n\n'
+    BoxLayout:
+        id: footer
+        size_hint_y: None
+        height: 30
+        canvas.before:
+            Color:
+                rgba: (.2,.2, .7, 1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Label:
+            text: 'Desenvolvido por Enzo Pegorari'
